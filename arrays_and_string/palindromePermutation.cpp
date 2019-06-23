@@ -1,3 +1,5 @@
+// Time: O(n)
+// Space: O(1) (lowercase letters)
 
 bool palindromePermutation(string str){
   int n = str.length();
