@@ -1,4 +1,4 @@
-// Time: O(n * m)
+// Time: O(n) for concatenating string. O(n*m) for isSubstring.
 // Space: O(n) (appending existing string to string)
 
 bool isSubstring(string s1, string s2){
