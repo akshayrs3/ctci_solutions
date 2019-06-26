@@ -25,9 +25,9 @@ Node *removeDups(Node *head)
 // Time: O(n^2)
 // Space: O(1)
 
-Node *removeDuplicates(Node *root)
+Node *removeDups(Node *head)
 {
-    Node* temp = root;
+    Node* temp = head;
     Node* prev = NULL;
     Node* next = NULL;
     while(temp != NULL){
@@ -45,5 +45,5 @@ Node *removeDuplicates(Node *root)
         }
         temp = temp->next;
     }
-    return root;
+    return head;
 }
