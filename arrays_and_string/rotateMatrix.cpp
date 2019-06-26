@@ -1,18 +1,27 @@
 // Time: O(n^2)
 // Space: O(1)
-
-void rotateMatrix(vector <vector <int> > &A){
+void transpose(vector< vector<int> > &A){
     int n = A.size();
-    int last = n-1;
     int level = 0;
     while(level < n/2){
-        for(int i=level;i<last;i++){
-            swap(A[level][i], A[i][last]);
-            swap(A[level][i], A[last][last-i+level]);
-            swap(A[level][i], A[last-i+level][level]);
+        for(int i=level;i<n;i++){
+            swap(A[level][i], A[i][level]);
         }
         level++;
-        last--;
     }
+    return;
+}
+void mirror_cols(vector< vector<int> > &A){
+    int n = A.size();
+    for(int i=0;i<n/2;i++){
+        for(int j=0;j<n;j++){
+            swap(A[j][i], A[j][n-i-1]);
+        }
+    }
+    return;
+}
+void rotateMatrix(vector <vector <int> > &A){
+    transpose(A);
+    mirror_cols(A);
     return;
 }
