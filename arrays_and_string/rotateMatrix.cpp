@@ -1,9 +1,10 @@
 // Time: O(n^2)
 // Space: O(1)
+
 void transpose(vector< vector<int> > &A){
     int n = A.size();
     int level = 0;
-    while(level < n/2){
+    while(level < n){
         for(int i=level;i<n;i++){
             swap(A[level][i], A[i][level]);
         }
