@@ -1,4 +1,4 @@
-// Time: O(max(m,n))
+// Time: O(m+n)
 // Space: O(1)
 
 int length(ListNode* head){
