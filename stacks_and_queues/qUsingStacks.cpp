@@ -1,60 +1,53 @@
-// Time:   Push O(1)  Pop O(n) Peek O(n)
-// Space:  Push O(1)  Pop O(n) Peek O(n)
+// Time:   Push O(1)  Pop O(1) amortized Peek O(1) amortized
+// Space:  Push O(1)  Pop O(1) amortized Peek O(1) amortized
 
 class MyQueue {
 public:
     /** Initialize your data structure here. */
-    stack<int> s1;
-    stack<int> s2;
-    int size;
+    stack<int> push_stack;
+    stack<int> pop_stack;
     MyQueue() {
-        size = 0;
-    }
     
+    }
     /** Push element x to the back of queue. */
     void push(int x) {
-        s1.push(x);
-        size++;
+        push_stack.push(x);
     }
     
     /** Removes the element from in front of queue and returns that element. */
     int pop() {
         int x = 0;
-        while(!s1.empty()){
-            x = s1.top();
-            s2.push(x);
-            s1.pop();
+        if(!pop_stack.empty()){
+            x = pop_stack.top();
+            pop_stack.pop();
+            return x;
+        } 
+        while(!push_stack.empty()){
+            x = push_stack.top();
+            pop_stack.push(x);
+            push_stack.pop();
         }
-        int res = s2.top();
-        s2.pop();
-        while(!s2.empty()){
-            x = s2.top();
-            s1.push(x);
-            s2.pop();
-        }
-        size--;
-        return res;
+        x = pop_stack.top();
+        pop_stack.pop();
+        return x;
     }
     
     /** Get the front element. */
     int peek() {
+        if(!pop_stack.empty()) return pop_stack.top();
         int x = 0;
-        while(!s1.empty()){
-            x = s1.top();
-            s2.push(x);
-            s1.pop();
+        while(!push_stack.empty()){
+            x = push_stack.top();
+            pop_stack.push(x);
+            push_stack.pop();
         }
-        int res = s2.top();
-        while(!s2.empty()){
-            x = s2.top();
-            s1.push(x);
-            s2.pop();
-        }
-        return res;
+        return pop_stack.top();
+    
     }
     
     /** Returns whether the queue is empty. */
     bool empty() {
-        return size == 0;
+        return (push_stack.empty() && pop_stack.empty());
     }
 };
+
