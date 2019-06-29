@@ -1,5 +1,5 @@
-// Time:   Push O(1)  Pop O(1) amortized Peek O(1) amortized
-// Space:  Push O(1)  Pop O(1) amortized Peek O(1) amortized
+// Time: O(1) amortized
+// Space: O(n)
 
 class MyQueue {
 public:
@@ -50,4 +50,3 @@ public:
         return (push_stack.empty() && pop_stack.empty());
     }
 };
-
