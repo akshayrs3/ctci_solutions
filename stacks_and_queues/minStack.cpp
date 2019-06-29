@@ -1,5 +1,5 @@
 // Time: O(1)
-// Space: O(2n) for two stacks.
+// Space: O(n) for two stacks.
 
 class MinStack {
 public:
