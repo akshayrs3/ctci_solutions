@@ -23,3 +23,26 @@ Node* inOrderSuccessor(Node* root, int x){
         }
     return inOrder;
 }
+
+// Time: O(h)
+// Space: O(1)
+// Without parent links
+Node * inOrderSuccessor(Node *root, Node *x)
+{
+    Node* inOrder = NULL;
+    if(x->right){
+        inOrder = leftMost(x->right);
+    }else{
+        while(root){
+            if(root->data > x->data){
+                inOrder = root;
+                root = root->left;
+            }else if(root->data < x->data){
+                root = root->right;
+            }else{
+                return inOrder;
+            }
+        }
+    }
+    return inOrder;
+}
