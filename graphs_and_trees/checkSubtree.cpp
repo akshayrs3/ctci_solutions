@@ -1,31 +1,17 @@
-// Time: O(m + n) assuming substring match is O(m)
-// Space: O(max(m, n))
+// Time: O(n * m) but average is O(n + m) because it exits as soon as a diff is found in subtrees.
+// Space: O(h)
 
-void preOrder(TreeNode *root, string &res){
-    if(root == NULL){
-        res += "null ";
-        return;
-    }
-    res += to_string(root->val)+" ";
-    preOrder(root->left, res);
-    preOrder(root->right, res);
-    return;
-    }
+bool isSameTree(TreeNode* s, TreeNode* t){
+    if(s == NULL && t == NULL) return true;
+    if(s == NULL || t == NULL) return false;
+    return s->val == t->val && isSameTree(s->left, t->left)
+        && isSameTree(s->right, t->right);
+}
 bool isSubtree(TreeNode* s, TreeNode* t) {
-    string str1 = "";
-    string str2 = "";
-    preOrder(s, str1);
-    preOrder(t, str2);
-    int n = str1.length();
-    int m = str2.length();
-    cout << str1 << endl << str2 << endl;
-    for(int i=0;i<=n-m;i++){
-        int j = 0;
-        while(j < m && str2[j] == str1[i+j]) j++;
-        if(j == m){
-            if(i > 0 && str1[i-1] != ' ') return false;    
+    if(t == NULL) return true;
+    if(s == NULL) return false;
+    if(isSameTree(s, t))
         return true;
-        }
-    }
-    return false;
+    return isSubtree(s->left, t)
+        || isSubtree(s->right, t);
 }
